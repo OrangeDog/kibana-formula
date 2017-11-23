@@ -8,6 +8,10 @@
   {% endif %}
 {% endif %}
 
+'6':
+  repo_url: https://artifacts.elastic.co/packages/6.x/apt
+  configfile: /etc/kibana/kibana.yml
+
 '5':
   repo_url: https://artifacts.elastic.co/packages/5.x/apt
   configfile: /etc/kibana/kibana.yml
