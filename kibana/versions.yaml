@@ -2,11 +2,11 @@
 # take a look at github pull request #16 before editing here
 {% if(salt['pillar.get']('kibana:repoVersion')) %}
   {% set versionRepo = salt['pillar.get']('kibana:repoVersion') %}
-  {% if versionRepo.startswith('5.') %}
+  {% set version_list = versionRepo.split('.') %}
+  {% set major_version = version_list[0] %}
 {{ versionRepo }}:
-  repo_url: https://artifacts.elastic.co/packages/5.x/apt
+  repo_url: https://artifacts.elastic.co/packages/{{ major_version }}.x/apt
   configfile: /etc/kibana/kibana.yml
-  {% endif %}
 {% endif %}
 
 '6':
