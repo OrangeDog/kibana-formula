@@ -1,23 +1,25 @@
-{% set version = salt['pillar.get']('kibana:repoVersion') %}
-{% set major_version = version[0] | int %}
-{% set minor_version = version[1] | int %}
+# take a look at github pull request #16 before editing here
+{% if(salt['pillar.get']('kibana:repoVersion')) %}
+  {% set version = salt['pillar.get']('kibana:repoVersion') %}
+  {% set major_version = version[0] | int %}
+{{ version }}:
+  repo_url: https://artifacts.elastic.co/packages/{{major_version}}.x/apt
+  configfile: /etc/kibana/kibana.yml
+  {% endif %}
+{% endif %}
 
-{%- if elasticsearch.major_version in [5,6] %}
+'6':
+  repo_url: https://artifacts.elastic.co/packages/6.x/apt
+  configfile: /etc/kibana/kibana.yml
 
-  {%- set repo_url = 'https://artifacts.elastic.co/packages/' ~ (elasticsearch.major_version|string) ~ '.x/apt' %}
-  {%- set config_file = '/etc/kibana/kibana.yml' %}
+'5':
+  repo_url: https://artifacts.elastic.co/packages/5.x/apt
+  configfile: /etc/kibana/kibana.yml
 
-{%- elif elasticsearch.major_version == 4 %}
-  
-  {%- set repo_url = 'http://packages.elastic.co/kibana/' ~ (elasticsearch.major_version|string) ~ '.' ~ (elasticsearch.minor_version|string) ~ '/debian' %}
-  {%- set config_file = '/opt/kibana/config/kibana.yml' %}
+'4.6':
+  repo_url: http://packages.elastic.co/kibana/4.6/debian
+  configfile: /opt/kibana/config/kibana.yml
 
-{%- endif %}
-
-debug_kibana_repo_name:
-    cmd.run:
-        - name: "echo 'major_version {{ elasticsearch.major_version }} - repo_url: {{ repo_url }}'"
-
-kibana_repo:
-  repo_url: {{repo_url}}
-  configfile: {{config_file}}
+'4.5':
+  repo_url: http://packages.elastic.co/kibana/4.5/debian
+  configfile: /opt/kibana/config/kibana.yml
