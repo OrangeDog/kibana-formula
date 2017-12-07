@@ -5,7 +5,6 @@
 {{ version }}:
   repo_url: https://artifacts.elastic.co/packages/{{major_version}}.x/apt
   configfile: /etc/kibana/kibana.yml
-  {% endif %}
 {% endif %}
 
 '6':
