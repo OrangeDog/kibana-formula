@@ -7,3 +7,5 @@ kibana-name:
   service.running:
     - name: {{ kibana.service.name }}
     - enable: True
+    - watch:
+      - file: kibana-config
