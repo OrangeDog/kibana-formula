@@ -5,14 +5,14 @@
 
 {% if kibana.source  %}
     {%- set install_path = kibana.sources.installPath ~ 'current' %}
-    {% if kibana.sourceVersion[0] == '5' %}
+    {% if kibana.sourceVersion[0] == '5' or kibana.sourceVersion[0] == '6' %}
         {%- set plugin_bin = 'kibana-plugin' %}
     {% else %}
         {%- set plugin_bin = 'plugin' %}
     {% endif %}
 {% else %}
     {%- set install_path = '/usr/share/kibana' %}
-    {% if kibana.repoVersion == '5' %}
+    {% if kibana.repoVersion == '5' or kibana.repoVersion == '6' %}
         {%- set plugin_bin = 'kibana-plugin' %}
     {% else %}
         {%- set plugin_bin = 'plugin' %}
