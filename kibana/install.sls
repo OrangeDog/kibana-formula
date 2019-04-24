@@ -15,7 +15,7 @@ include:
 kibana-pkg:
   pkg.installed:
     - name: {{ kibana.pkg }}
-    {%- if kibana.repoVersion.startswith('5.') or kibana.repoVersion.startswith('6.') %}
+    {%- if salt['pkg.version_cmp'](kibana.repoVersion, 5.0) >= 0 %}
     - version: {{ kibana.repoVersion }}
     {%- endif %}
 {%- endif %}

@@ -9,6 +9,10 @@
   configfile: /etc/kibana/kibana.yml
 {% endif %}
 
+'7':
+  repo_url: https://artifacts.elastic.co/packages/7.x/apt
+  configfile: /etc/kibana/kibana.yml
+
 '6':
   repo_url: https://artifacts.elastic.co/packages/6.x/apt
   configfile: /etc/kibana/kibana.yml
